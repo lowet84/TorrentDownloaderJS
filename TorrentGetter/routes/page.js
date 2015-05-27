@@ -1,25 +1,34 @@
 var express = require('express');
 var request = require('request');
-var parser = require('cookie-parser')
+var parser = require('cookie-parser');
 var router = express.Router();
 
-router.post('/', function (req, res, next){
-    var url = req.body.url;
-    var jar = null;
+var postFunction = function (req, res, next) {
+    var urls = req.body.urls;
+    var ret = [];
+    var jar = request.jar();
 
-    if(req.body.cookies != undefined){
-        jar = req.body.cookies;
-    }
-    else{
-        jar = request.jar();
+    processUrls(urls, ret, jar, res);
+};
+
+var processUrls = function (urls, ret, jar, res) {
+    if (urls.length == 0) {
+        res.json(ret);
+        return;
     }
 
-    request({url:url, jar:jar}, function(err, resp, body) {
+    var url = urls[0];
+    urls.splice(0, 1);
+
+    request({uri: url, jar: jar}, function (err, resp, body) {
         if (err)
             throw err;
 
-        res.json({cookies:jar, body:body});
+        ret.push({url: url, body: resp.body});
+        processUrls(urls,ret,jar, res);
     });
-});
+};
+
+router.post('/', postFunction);
 
 module.exports = router;
