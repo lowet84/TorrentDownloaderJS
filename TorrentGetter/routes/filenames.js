@@ -1,14 +1,21 @@
 var express = require('express');
 var router = express.Router();
+var request = require('request');
 var processUrls = require('../Utilities/processUrls');
-var logon = require('../Utilities/logon');
+var logon = require('../Utilities/logon')
 
-var postFunction = function (req, res, next) {
+/* GET home page. */
+router.post('/', function (req, res, next) {
+    var urls = req.body.urls;
+    var site = req.body.siteurl;
     var login = req.body.login;
     var name = req.body.name;
-    var urls = req.body.urls;
 
-    var callback = function(ret){
+    for (i = 0; i < urls.length; i++) {
+        urls[i] = site + urls[i];
+    }
+
+    var callback = function (ret) {
         res.json(ret);
     };
 
@@ -17,10 +24,6 @@ var postFunction = function (req, res, next) {
     }
 
     logon(next, name,login);
-};
-
-
-
-router.post('/', postFunction);
+});
 
 module.exports = router;
