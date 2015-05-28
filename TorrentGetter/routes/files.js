@@ -21,7 +21,7 @@ router.post('/', function (req, res, next) {
 
     var next = function(jar){
         processUrls(callback, urls, jar);
-    }
+    };
 
     logon(next, name,login);
 });
