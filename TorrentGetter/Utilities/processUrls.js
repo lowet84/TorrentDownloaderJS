@@ -17,7 +17,7 @@ var processUrls = function (callback, urls, jar, ret) {
         if (err)
             return;
 
-        ret.push({url: url, body: resp.body});
+        ret.push({url: url, body: resp.body, content:resp.headers['content-disposition']});
         processUrls(callback, urls, jar, ret);
     });
 };
