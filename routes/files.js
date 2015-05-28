@@ -9,7 +9,7 @@ router.post('/', function (req, res, next) {
     var urls = req.body.urls;
     var site = req.body.siteurl;
     var login = req.body.login;
-    var name = req.body.name;
+    var type = req.body.type;
 
     for (i = 0; i < urls.length; i++) {
         urls[i] = site + urls[i];
@@ -23,7 +23,7 @@ router.post('/', function (req, res, next) {
         processUrls(callback, urls, jar);
     };
 
-    logon(next, name,login);
+    logon(next, type,login);
 });
 
 module.exports = router;

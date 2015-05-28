@@ -5,7 +5,7 @@ var logon = require('../Utilities/logon');
 
 var postFunction = function (req, res, next) {
     var login = req.body.login;
-    var name = req.body.name;
+    var type = req.body.type;
     var urls = req.body.urls;
 
     var callback = function(ret){
@@ -16,7 +16,7 @@ var postFunction = function (req, res, next) {
         processUrls(callback, urls, jar);
     }
 
-    logon(next, name,login);
+    logon(next, type,login);
 };
 
 
