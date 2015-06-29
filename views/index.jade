@@ -2,29 +2,15 @@ extends layout
 link(href='/public/stylesheets/style.css',rel='stylesheet')
 
 block content
-    h2 Manage sites
-    div
-        form(method='post',action='')
-            div(class='container')
-                label Add new site:
-            div(class='container')
-                label(for='name', class='textWidth') Name:
-                input(type='text',name='name',id='name', class='inputWidth')
-            div(class='container')
-                label(for='url', class='textWidth') Url:
-                input(type='text',name='url',id='url', class='inputWidth')
-            div(class='container')
-                label(for='username', class='textWidth') Username:
-                input(type='text',name='username',id='username', class='inputWidth')
-            div(class='container')
-                label(for='password', class='textWidth') Password:
-                input(type='password',name='password',id='password', class='inputWidth')
-            div(class='container')
-                label(for='submitText', class='textWidth') SubmitText:
-                input(type='text',name='submitText',id='submitText', class='inputWidth')
-            input(type='submit',name='submit',value='Submit').submit-button
+    form(method='post',action='')
+        div(class='container')
+            label(for='name', class='textWidth') Name:
+            input(type='text',name='name',id='name', class='inputWidth')
+        input(type='submit',name='submit',value='Add new site').submit-button
     div(class='sites') Edit sites
         each val in sites
             div
                 label(class='site') #{val.name}&nbsp
                 a(href='/edit?site=#{val.name}') [Edit]
+                label &nbsp
+                a(href='/delete?site=#{val.name}',style={color:'red'}) [Delete]

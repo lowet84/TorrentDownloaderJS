@@ -1,0 +1,13 @@
+extends layout
+link(href='/public/stylesheets/style.css',rel='stylesheet')
+block content
+    h2 Edit #{site} - #{search.name}
+    form(method='post',action='')
+        div
+            div(class='container')
+                label(for='url', class='textWidth') Url (%s):
+                input(type='text',name='url',id='url', class='inputWidth', value=search.url)
+            input(type='hidden',name='name',value=search.name)
+            input(type='hidden',name='site',value=site)
+            input(type='submit',name='submit',value='Save')
+            input(type='submit',name='submit',value='Cancel')

@@ -10,6 +10,8 @@ var edit = require('./routes/edit');
 var page = require('./routes/page');
 var parse = require('./routes/parse');
 var files = require('./routes/files');
+var deleteSite = require('./routes/delete');
+var search = require('./routes/search');
 
 var app = express();
 
@@ -30,6 +32,8 @@ app.use('/edit/', edit);
 app.use('/page/', page);
 app.use('/parse/', parse);
 app.use('/files/', files);
+app.use('/delete/', deleteSite);
+app.use('/search/', search);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

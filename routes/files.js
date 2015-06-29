@@ -11,7 +11,7 @@ router.post('/', function (req, res, next) {
     var login = req.body.login;
     var type = req.body.type;
 
-    for (i = 0; i < urls.length; i++) {
+    for (var i = 0; i < urls.length; i++) {
         urls[i] = site + urls[i];
     }
 
